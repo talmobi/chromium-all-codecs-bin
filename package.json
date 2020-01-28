@@ -1,0 +1,34 @@
+{
+  "name": "chromium-all-codecs-bin",
+  "version": "0.0.0",
+  "description": "Download a Chromium all-codecs+ woolyss binary",
+  "main": "main.js",
+  "scripts": {
+    "install": "node install.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chromium",
+    "woolyss",
+    "codec",
+    "codecs",
+    "h264",
+    "aac",
+    "media",
+    "bin",
+    "html5"
+  ],
+  "author": "talmobi <talmo.christian@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/talmobi/chromium-all-codecs-bin"
+  },
+  "bugs": {
+    "url": "https://github.com/talmobi/chromium-all-codecs-bin/issues",
+    "email": "talmo.christian@gmail.com"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
