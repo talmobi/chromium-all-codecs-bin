@@ -17,6 +17,8 @@ const makeDir = require( 'make-dir' )
 const https = require( 'https' )
 const http = require( 'http' )
 
+const redstar = require( 'redstar' )
+
 const revision = 706915
 
 main()
@@ -54,12 +56,25 @@ async function main () {
     execPath = 'chromium' // global binary installed with package manager
   } else if ( platform === 'win32' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win32-' + revision )
-    execPath = path.join( downloadRootDirectory, 'win32-' + revision, 'chrome.exe' )
+    const filename = downloadURLs[ 'win32' ].split( '/' ).pop().split( '.' )[ 0 ]
+    execPath = path.join( downloadRootDirectory, 'win32-' + revision, filename,'chrome.exe' )
   } else if ( platform === 'win64' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win64-' + revision )
-    execPath = path.join( downloadRootDirectory, 'win64-' + revision, 'chrome.exe' )
+    const filename = downloadURLs[ 'win64' ].split( '/' ).pop().split( '.' )[ 0 ]
+    execPath = path.join( downloadRootDirectory, 'win64-' + revision, filename, 'chrome.exe' )
   } else throw new Error( 'Unspported platform: ' + platform )
 
+  const execPromise = new Promise(function ( resolve ) {
+    redstar( path.join( downloadRootDirectory, '**/chrome.exe' ), function ( err, files, dirs ) {
+      resolve( files[ 0 ] )
+    } )
+  })
+
+  execPath = await execPromise
+
+  execPath = path.relative( process.cwd(), execPath )
+
+  console.log( execPath )
 
   // make sure download directory exists
   makeDir.sync( downloadDirectory )
