@@ -14,34 +14,11 @@
  * limitations under the License.
  */
 
-/**
- * This file is part of public API.
- *
- * By default, the `puppeteer` package runs this script during the installation
- * process unless one of the env flags is provided.
- * `puppeteer-core` package doesn't include this step at all. However, it's
- * still possible to install Chromium using this script when necessary.
- */
-if (process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD) {
-  logPolitely('**INFO** Skipping Chromium download. "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" environment variable was found.');
-  return;
-}
-if (process.env.NPM_CONFIG_PUPPETEER_SKIP_CHROMIUM_DOWNLOAD || process.env.npm_config_puppeteer_skip_chromium_download) {
-  logPolitely('**INFO** Skipping Chromium download. "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" was set in npm config.');
-  return;
-}
-if (process.env.NPM_PACKAGE_CONFIG_PUPPETEER_SKIP_CHROMIUM_DOWNLOAD || process.env.npm_package_config_puppeteer_skip_chromium_download) {
-  logPolitely('**INFO** Skipping Chromium download. "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" was set in project config.');
-  return;
-}
+const BrowserFetcher = require( './BrowserFetcher.js' )
+const browserFetcher = new BrowserFetcher( process.cwd() )
 
-const downloadHost = process.env.PUPPETEER_DOWNLOAD_HOST || process.env.npm_config_puppeteer_download_host || process.env.npm_package_config_puppeteer_download_host;
-
-const puppeteer = require('./index');
-const browserFetcher = puppeteer.createBrowserFetcher({ host: downloadHost });
-
-const revision = process.env.PUPPETEER_CHROMIUM_REVISION || process.env.npm_config_puppeteer_chromium_revision || process.env.npm_package_config_puppeteer_chromium_revision
-  || require('./package.json').puppeteer.chromium_revision;
+// ref: https://chromium.woolyss.com
+const revision = 706915
 
 const revisionInfo = browserFetcher.revisionInfo(revision);
 
