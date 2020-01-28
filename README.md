@@ -46,18 +46,20 @@ makes it unable to play these media files (e.g. unable to play
 certain YouTube videos).
 
 ## For who?
-Want to play media files in puppeteer?
+I wanted to play media files that used h264 and/or aac through
+puppeteer which its default bundled Chromium wasn't able to do.
 
 ## How
-Basically just copy paste the puppeteer binary download/install
-code and replace the url's with woolyss url's for the
+Basically mimic the way puppeteer downloads/installs
+binaries and replace the url's with woolyss url's for the
 all-codecs+ prebuilt binaries.
 
-## Alternatives
-`chrome-finder` -- finds installed Chrome executable path.
-Chrome by default supports licensed codecs such as h264 and AAC.
+See: https://chromium.woolyss.com
+
+## Related
+[chrome-finder](https://github.com/gwuhaolin/chrome-finder)
+
+[puppeteer](https://github.com/puppeteer/puppeteer)
 
 ## Test
-```
-```
-
+No tests...
