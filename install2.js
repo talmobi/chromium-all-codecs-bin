@@ -11,6 +11,7 @@ const path = require( 'path' )
 const rimraf = require( 'rimraf' )
 const pkgDir = require( 'pkg-dir' )
 const extractZip = require( 'extract-zip' )
+const { unzip } = require( 'cross-unzip' )
 const makeDir = require( 'make-dir' )
 
 const https = require( 'https' )
@@ -126,7 +127,7 @@ async function main () {
 
         // unzip
         const zipPath = destinationPath
-        extractZip(zipPath, { dir: downloadDirectory }, function ( err ) {
+        unzip(zipPath, downloadDirectory, function ( err ) {
           if ( err ) throw err
           console.log( 'Unzip Success!' )
 
