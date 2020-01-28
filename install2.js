@@ -40,7 +40,7 @@ async function main () {
 
   if ( platform === 'linux' ) {
     console.log()
-    console.log( 'See download instruction from here: ' )
+    console.log( 'See download/install instructions from here: ' )
     console.log(
       'https://chromium.woolyss.com/#linux'
     )
