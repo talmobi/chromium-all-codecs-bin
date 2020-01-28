@@ -12,3 +12,6 @@ node_modules
 # downloaded chromium zips and binaries
 .local-chromium-all-codecs
 .local-chromium
+
+# memorized bin path after install
+bin-path.txt
