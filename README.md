@@ -1,6 +1,6 @@
 #  chromium-all-codecs-bin
-Download a platform compatible Chromium binary that supports all
-media codecs that like h264 and aac that are not available in
+Download a platform compatible (mac/win32/64) Chromium binary that supports all
+media codecs like h264 and aac that are not available in
 Chromium by default (due to licensing issues).
 
 refs:
@@ -17,7 +17,7 @@ npm install --save chromium-all-codecs-bin
 #### Sample Module usage
 ```javascript
 const puppeteer = require( 'puppeteer-core' )
-const execPath = require( 'chromium-all-codecs-bin' )
+const execPath = require( 'chromium-all-codecs-bin' )()
 const opts = {
   headless: false, // show browser
   executablePath: execPath
@@ -29,6 +29,8 @@ const opts = {
     page = pages[ 0 ]
 
     await page.goto( 'https://tools.woolyss.com/html5-audio-video-tester/' )
+    // h264 and AAC now supported~
+    // ( e.g. some YouTube video's require this for playback )
 })()
 ```
 
