@@ -47,40 +47,43 @@ async function main () {
     return
   }
 
+  let execName = 'chrome.exe'
   let execPath = ''
   let downloadDirectory = downloadRootDirectory
   if ( platform === 'mac' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'mac-' + revision )
-    execPath = path.join( downloadRootDirectory, 'mac-' + revision, 'Chromium.app', 'Contents', 'MacOS', 'Chromium' )
+    execName = 'Chromium'
   } else if ( platform === 'linux' ) {
     execPath = 'chromium' // global binary installed with package manager
   } else if ( platform === 'win32' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win32-' + revision )
     const filename = downloadURLs[ 'win32' ].split( '/' ).pop().split( '.' )[ 0 ]
-    execPath = path.join( downloadRootDirectory, 'win32-' + revision, filename,'chrome.exe' )
+    execName = 'chrome.exe'
   } else if ( platform === 'win64' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win64-' + revision )
     const filename = downloadURLs[ 'win64' ].split( '/' ).pop().split( '.' )[ 0 ]
-    execPath = path.join( downloadRootDirectory, 'win64-' + revision, filename, 'chrome.exe' )
+    execName = 'chrome.exe'
   } else throw new Error( 'Unspported platform: ' + platform )
 
+  // find bin path through glob pattern
   const execPromise = new Promise(function ( resolve ) {
-    redstar( path.join( downloadRootDirectory, '**/chrome.exe' ), function ( err, files, dirs ) {
-      resolve( files[ 0 ] )
+    redstar( path.join( downloadDirectory, '**/' + execName ), function ( err, files, dirs ) {
+      resolve( files[ 0 ] || '' )
     } )
   })
 
   execPath = await execPromise
 
-  execPath = path.relative( process.cwd(), execPath )
-
-  console.log( execPath )
+  if ( execPath ) {
+    execPath = path.relative( process.cwd(), execPath )
+  }
 
   // make sure download directory exists
   makeDir.sync( downloadDirectory )
 
   try {
     const s = fs.statSync( execPath )
+    fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), execPath, 'utf8' )
     // exists already, no need to download
     console.log( 'Chromium already exists, no need to download.' )
   } catch ( err ) {
@@ -142,12 +145,27 @@ async function main () {
 
         // unzip
         const zipPath = destinationPath
-        unzip(zipPath, downloadDirectory, function ( err ) {
+        unzip(zipPath, downloadDirectory, async function ( err ) {
           if ( err ) throw err
           console.log( 'Unzip Success!' )
 
+          // find bin path through glob pattern
+          const execPromise = new Promise(function ( resolve ) {
+            redstar( path.join( downloadDirectory, '**/' + execName ), function ( err, files, dirs ) {
+              resolve( files[ 0 ] || '' )
+            } )
+          })
+
+          execPath = await execPromise
+
+          if ( execPath ) {
+            execPath = path.relative( process.cwd(), execPath )
+          }
+
           try {
             const s = fs.statSync( execPath )
+            fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), execPath, 'utf8' )
+
             // exists already, no need to download
             console.log( 'Chromium downloaded successfully!' )
             console.log( 'Chromium: ' + execPath )
