@@ -4,7 +4,7 @@
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
-    "install": "node install.js",
+    "install": "node install2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -29,6 +29,12 @@
     "url": "https://github.com/talmobi/chromium-all-codecs-bin/issues",
     "email": "talmo.christian@gmail.com"
   },
-  "dependencies": {},
+  "dependencies": {
+    "extract-zip": "~1.6.7",
+    "make-dir": "~3.0.0",
+    "pkg-dir": "~4.2.0",
+    "progress": "~2.0.3",
+    "rimraf": "~3.0.1"
+  },
   "devDependencies": {}
 }
