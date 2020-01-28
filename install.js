@@ -83,7 +83,8 @@ async function main () {
 
   try {
     const s = fs.statSync( execPath )
-    fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), execPath, 'utf8' )
+    const absExecPath = path.resolve( execPath )
+    fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), absExecPath, 'utf8' )
     // exists already, no need to download
     console.log( 'Chromium already exists, no need to download.' )
   } catch ( err ) {
@@ -164,7 +165,8 @@ async function main () {
 
           try {
             const s = fs.statSync( execPath )
-            fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), execPath, 'utf8' )
+            const absExecPath = path.resolve( execPath )
+            fs.writeFileSync( path.join( __dirname, 'bin-path.txt' ), absExecPath, 'utf8' )
 
             // exists already, no need to download
             console.log( 'Chromium downloaded successfully!' )
