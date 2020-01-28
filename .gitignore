@@ -1,0 +1,14 @@
+node_modules
+
+# vim temp files
+*.swp
+*.swo
+*.swn
+*.swm
+
+# mac files
+*.DS_Store
+
+# downloaded chromium zips and binaries
+.local-chromium-all-codecs
+.local-chromium
