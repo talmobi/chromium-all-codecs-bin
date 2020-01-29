@@ -1,6 +1,6 @@
 {
   "name": "chromium-all-codecs-bin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Download a Chromium all-codecs+ woolyss binary",
   "main": "main.js",
   "scripts": {
