@@ -17,7 +17,7 @@ const http = require( 'http' )
 
 const redstar = require( 'redstar' )
 
-const revision = 706915
+let revision = 706915
 
 main()
 
@@ -35,6 +35,13 @@ async function main () {
   }
 
   if ( !platform ) throw new Error( 'Unspported platform: ' + p )
+
+  if ( platform === 'mac' ) {
+    // use older/stable version for mac
+    // had many page crashes when playing youtube videos
+    // could not find reliable issue after few days of debugging
+    revision = 587811
+  }
 
   if ( platform === 'linux' ) {
     console.log()
