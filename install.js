@@ -169,6 +169,9 @@ async function main () {
             // exists already, no need to download
             console.log( 'Chromium downloaded successfully!' )
             console.log( 'Chromium: ' + execPath )
+
+            // delete zipfile
+            rimraf.sync( zipPath )
           } catch ( err ) {
             // should exist now that we just downloaded it...
             throw new Error( 'Failed to download Chromium' )
