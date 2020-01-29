@@ -9,8 +9,6 @@ const fs = require( 'fs' )
 const path = require( 'path' )
 
 const rimraf = require( 'rimraf' )
-const pkgDir = require( 'pkg-dir' )
-const extractZip = require( 'extract-zip' )
 const { unzip } = require( 'cross-unzip' )
 const makeDir = require( 'make-dir' )
 
