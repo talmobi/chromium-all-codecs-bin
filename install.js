@@ -1,4 +1,6 @@
+
 const downloadURLs = {
+  linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
   mac: 'https://github.com/macchrome/macstable/releases/download/v70.0.3538.67-r587811-macOS/Chromium.70.0.3538.67.nosync.app.zip',
   win32: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/Ungoogled-Chromium-79.0.3945.130-Polly.Win32.7z',
   win64: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/ungoogled-chromium-79.0.3945.130-1_windows.7z'
@@ -9,8 +11,17 @@ const fs = require( 'fs' )
 const path = require( 'path' )
 
 const rimraf = require( 'rimraf' )
-const { unzip } = require( 'cross-unzip' )
+const extractZip = require( 'extract-zip' )
+const crossZip = require( 'cross-unzip' )
 const makeDir = require( 'make-dir' )
+
+function unzip ( zipPath, dirPath, callback ) {
+  const ext = path.extname( zipPath )
+  if ( ext.indexOf( '7z' ) >= 0 ) {
+    return crossZip.unzip( zipPath, dirPath, callback )
+  }
+  return extractZip( zipPath, { dir: dirPath }, callback )
+}
 
 const https = require( 'https' )
 const http = require( 'http' )
@@ -44,12 +55,14 @@ async function main () {
   }
 
   if ( platform === 'linux' ) {
-    console.log()
-    console.log( 'See download/install instructions from here: ' )
-    console.log(
-      'https://chromium.woolyss.com/#linux'
-    )
-    return
+    revision = 587811
+
+    // console.log()
+    // console.log( 'See download/install instructions from here: ' )
+    // console.log(
+    //   'https://chromium.woolyss.com/#linux'
+    // )
+    // return
   }
 
   let execName = 'chrome.exe'
@@ -59,7 +72,9 @@ async function main () {
     downloadDirectory = path.join( downloadRootDirectory, 'mac-' + revision )
     execName = 'Chromium'
   } else if ( platform === 'linux' ) {
-    execPath = 'chromium' // global binary installed with package manager
+    downloadDirectory = path.join( downloadRootDirectory, 'linux-' + revision )
+    const filename = downloadURLs[ 'linux' ].split( '/' ).pop().split( '.' )[ 0 ]
+    execName = 'chrome'
   } else if ( platform === 'win32' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win32-' + revision )
     const filename = downloadURLs[ 'win32' ].split( '/' ).pop().split( '.' )[ 0 ]
