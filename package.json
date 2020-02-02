@@ -30,13 +30,13 @@
     "email": "talmo.christian@gmail.com"
   },
   "dependencies": {
-    "cross-unzip": "^0.2.1",
-    "extract-zip": "^1.6.7",
+    "cross-unzip": "~0.2.1",
+    "extract-zip": "~1.6.7",
     "make-dir": "~3.0.0",
     "progress": "~2.0.3",
     "redstar": "0.0.2",
     "rimraf": "~3.0.1",
-    "win-7zip": "^0.1.1"
+    "win-7zip": "~0.1.1"
   },
   "devDependencies": {}
 }
