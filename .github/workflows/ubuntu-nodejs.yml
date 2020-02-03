@@ -17,10 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: add-apt-repository ppa:canonical-chromium-builds/stage
-    - run: apt update
-    - run: apt install chromium-browser
-    - run: apt install chromium-codecs-ffmpeg-extra
+    - run: sudo add-apt-repository ppa:canonical-chromium-builds/stage
+    - run: sudo apt update
+    - run: sudo apt install chromium-browser
+    - run: sudo apt install chromium-codecs-ffmpeg-extra
     - run: npm install
     - run: npm test
       env:
