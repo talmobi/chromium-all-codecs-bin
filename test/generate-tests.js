@@ -156,9 +156,9 @@ test( '.${ ext } | ${ vt } | ${ at }', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -167,16 +167,35 @@ test( '.${ ext } | ${ vt } | ${ at }', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
