@@ -1,4 +1,3 @@
-
 const downloadURLs = {
   linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
   mac: 'https://github.com/macchrome/macstable/releases/download/v70.0.3538.67-r587811-macOS/Chromium.70.0.3538.67.nosync.app.zip',
@@ -68,20 +67,27 @@ async function main () {
   let execName = 'chrome.exe'
   let execPath = ''
   let downloadDirectory = downloadRootDirectory
+  let filename = ''
   if ( platform === 'mac' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'mac-' + revision )
     execName = 'Chromium'
   } else if ( platform === 'linux' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'linux-' + revision )
-    const filename = downloadURLs[ 'linux' ].split( '/' ).pop().split( '.' )[ 0 ]
+    filename = downloadURLs[ 'linux' ]
+      .split( '/' ).pop()
+      .replace( /\?.*/, '' )
     execName = 'chrome'
   } else if ( platform === 'win32' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win32-' + revision )
-    const filename = downloadURLs[ 'win32' ].split( '/' ).pop().split( '.' )[ 0 ]
+    filename = downloadURLs[ 'win32' ]
+      .split( '/' ).pop()
+      .replace( /\?.*/, '' )
     execName = 'chrome.exe'
   } else if ( platform === 'win64' ) {
     downloadDirectory = path.join( downloadRootDirectory, 'win64-' + revision )
-    const filename = downloadURLs[ 'win64' ].split( '/' ).pop().split( '.' )[ 0 ]
+    filename = downloadURLs[ 'win64' ]
+      .split( '/' ).pop()
+      .replace( /\?.*/, '' )
     execName = 'chrome.exe'
   } else throw new Error( 'Unspported platform: ' + platform )
 
@@ -122,7 +128,7 @@ async function main () {
 
       const h = ( params.protocol === 'https:' ) ? https : http
 
-      const destinationPath = path.join( downloadDirectory, `download-${ platform }-${ revision }.zip` )
+      const destinationPath = path.join( downloadDirectory, `download-${ platform }-${ revision }-${ filename }` )
 
       let downloadedBytes = 0
       let totalBytes = 0
