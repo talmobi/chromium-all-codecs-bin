@@ -83,9 +83,9 @@ test( '.ogv | Theora | Vorbis', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -94,16 +94,35 @@ test( '.ogv | Theora | Vorbis', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -145,9 +164,9 @@ test( '.webm | VP9 | Opus', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -156,16 +175,35 @@ test( '.webm | VP9 | Opus', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -207,9 +245,9 @@ test( '.webm | VP8 | Vorbis', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -218,16 +256,35 @@ test( '.webm | VP8 | Vorbis', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -269,9 +326,9 @@ test( '.webm | AV1 Main@L3.0 | Opus', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -280,16 +337,35 @@ test( '.webm | AV1 Main@L3.0 | Opus', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -331,9 +407,9 @@ test( '.webm | AV1 Main@L2.0 | (no sound)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -342,16 +418,35 @@ test( '.webm | AV1 Main@L2.0 | (no sound)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -393,9 +488,9 @@ test( '.mp4 | AV1 | (no sound)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -404,16 +499,35 @@ test( '.mp4 | AV1 | (no sound)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -455,9 +569,9 @@ test( '.mp4 | H.265/HEVC Main@L3.1 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -466,16 +580,35 @@ test( '.mp4 | H.265/HEVC Main@L3.1 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -517,9 +650,9 @@ test( '.mp4 | H.265/HEVC Main | (no sound)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -528,16 +661,35 @@ test( '.mp4 | H.265/HEVC Main | (no sound)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -579,9 +731,9 @@ test( '.mp4 | H.264/AVC Baseline@L2.1 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -590,16 +742,35 @@ test( '.mp4 | H.264/AVC Baseline@L2.1 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -641,9 +812,9 @@ test( '.mp4 | H.264/AVC Main@L3.1 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -652,16 +823,35 @@ test( '.mp4 | H.264/AVC Main@L3.1 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -703,9 +893,9 @@ test( '.m4v | H.264/AVC Baseline@L3.0 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -714,16 +904,35 @@ test( '.m4v | H.264/AVC Baseline@L3.0 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -765,9 +974,9 @@ test( '.m2ts | H.264/AVC High@L4 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -776,16 +985,35 @@ test( '.m2ts | H.264/AVC High@L4 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -827,9 +1055,9 @@ test( '.mov | H.264/AVC Main@L3.1 | MP3', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -838,16 +1066,35 @@ test( '.mov | H.264/AVC Main@L3.1 | MP3', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -889,9 +1136,9 @@ test( '.3gp | H.263 BaseLine@1.0 | AMR', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -900,16 +1147,35 @@ test( '.3gp | H.263 BaseLine@1.0 | AMR', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -951,9 +1217,9 @@ test( '.avi | MPEG-4 Visual Advanced Simple@L5 | MP3', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -962,16 +1228,35 @@ test( '.avi | MPEG-4 Visual Advanced Simple@L5 | MP3', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1013,9 +1298,9 @@ test( '.qt | MPEG-4 Visual Advanced Simple@L3 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1024,16 +1309,35 @@ test( '.qt | MPEG-4 Visual Advanced Simple@L3 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1075,9 +1379,9 @@ test( '.3gp | MPEG-4 Visual Simple@L1 | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1086,16 +1390,35 @@ test( '.3gp | MPEG-4 Visual Simple@L1 | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1137,9 +1460,9 @@ test( '.amr |  | AMR', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1148,16 +1471,35 @@ test( '.amr |  | AMR', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1199,9 +1541,9 @@ test( '.mp3 |  | MP3', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1210,16 +1552,35 @@ test( '.mp3 |  | MP3', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1261,9 +1622,9 @@ test( '.weba |  | Vorbis', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1272,16 +1633,35 @@ test( '.weba |  | Vorbis', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1323,9 +1703,9 @@ test( '.ogg |  | Vorbis', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1334,16 +1714,35 @@ test( '.ogg |  | Vorbis', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1385,9 +1784,9 @@ test( '.oga |  | Vorbis', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1396,16 +1795,35 @@ test( '.oga |  | Vorbis', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1447,9 +1865,9 @@ test( '.opus |  | Opus', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1458,16 +1876,35 @@ test( '.opus |  | Opus', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1509,9 +1946,9 @@ test( '.flac |  | Flac', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1520,16 +1957,35 @@ test( '.flac |  | Flac', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1571,9 +2027,9 @@ test( '.wav |  | Wave', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1582,16 +2038,35 @@ test( '.wav |  | Wave', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1633,9 +2108,9 @@ test( '.m4a |  | AAC lc', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1644,16 +2119,35 @@ test( '.m4a |  | AAC lc', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1695,9 +2189,9 @@ test( '.mp3 |  | MP3 (streaming)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1706,16 +2200,35 @@ test( '.mp3 |  | MP3 (streaming)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1757,9 +2270,9 @@ test( '.aac |  | AAC (streaming)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1768,16 +2281,35 @@ test( '.aac |  | AAC (streaming)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1819,9 +2351,9 @@ test( '.opus |  | Opus (streaming)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1830,16 +2362,35 @@ test( '.opus |  | Opus (streaming)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1881,9 +2432,9 @@ test( '.gifv |  | (no sound)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1892,16 +2443,35 @@ test( '.gifv |  | (no sound)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
@@ -1943,9 +2513,9 @@ test( '.gifv |  | (no sound)', async function ( t ) {
   } )
 
   // wait for video/audio to play for a bit
-  await sleepMs( 1000 )
+  await sleepMs( 500 )
 
-  const currentTime = await page.evaluate( function () {
+  let currentTime = await page.evaluate( function () {
     const video = document.querySelector( 'video' )
     const audio = document.querySelector( 'audio' )
 
@@ -1954,16 +2524,35 @@ test( '.gifv |  | (no sound)', async function ( t ) {
     if ( audio ) currentTime = audio.currentTime
 
     const ct = Number( currentTime )
-    video && video.pause()
-    audio && audio.pause()
 
     return ct
   } )
 
+  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
+
+  if ( currentTime <= 0 ) {
+    // wait some more
+    await sleepMs( 1000 )
+
+    currentTime = await page.evaluate( function () {
+      const video = document.querySelector( 'video' )
+      const audio = document.querySelector( 'audio' )
+
+      let currentTime
+      if ( video ) currentTime = video.currentTime
+      if ( audio ) currentTime = audio.currentTime
+
+      const ct = Number( currentTime )
+      video && video.pause()
+      audio && audio.pause()
+
+      return ct
+    } )
+  }
+
   await page.close()
   // console.log( 'currentTime: ' + currentTime )
 
-  t.ok( !Number.isNaN( currentTime ), 'currentTime is not NaN' )
   t.ok( currentTime > 0, 'currentTime > 0' )
   t.end()
 } )
