@@ -1,5 +1,6 @@
 const downloadURLs = {
-  linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
+  linux: 'https://github.com/talmobi/chrome-ubuntu-64/raw/master/chrome-linux-64.zip',
+  // linux: 'https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Linux_x64%2F587811%2Fchrome-linux.zip?generation=1535668921668411&alt=media',
   mac: 'https://github.com/macchrome/macstable/releases/download/v70.0.3538.67-r587811-macOS/Chromium.70.0.3538.67.nosync.app.zip',
   win32: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/Ungoogled-Chromium-79.0.3945.130-Polly.Win32.7z',
   win64: 'https://github.com/macchrome/winchrome/releases/download/v79.0.3945.130-r706915-Win64/ungoogled-chromium-79.0.3945.130-1_windows.7z'
