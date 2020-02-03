@@ -1,4 +1,4 @@
-name: Node.js CI
+name: macos
 
 on: [push]
 
@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [macos-latest]
         node-version: [10.x]
 
     steps:
