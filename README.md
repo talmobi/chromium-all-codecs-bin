@@ -1,3 +1,7 @@
+![macos](https://github.com/talmobi/chromium-all-codecs-bin/workflows/macos/badge.svg)
+![windows](https://github.com/talmobi/chromium-all-codecs-bin/workflows/windows/badge.svg)
+![ubuntu](https://github.com/talmobi/chromium-all-codecs-bin/workflows/ubuntu/badge.svg)
+
 #  chromium-all-codecs-bin
 Download a platform compatible (mac/win32/64) Chromium binary that supports all
 media codecs like h264 and aac that are not available in
