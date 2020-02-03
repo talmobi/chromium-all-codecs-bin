@@ -62,4 +62,10 @@ See: https://chromium.woolyss.com
 [puppeteer](https://github.com/puppeteer/puppeteer)
 
 ## Test
-No tests...
+
+Tests against all videos found at:
+https://tools.woolyss.com/html5-audio-video-tester/
+
+```javascript
+npm test
+```
