@@ -11,6 +11,22 @@ refs:
 https://chromium.woolyss.com
 https://www.reddit.com/r/privacy/comments/6celi9/chromium_websites_safe/dhuwj2g/
 
+## WARNING!
+
+This is not super reliable. The linux version does not work and
+mac/windows versions are different, but they should work for
+most codecs.
+
+Please consider using something else like electron (which comes
+with its own version of chromium that can play most likely
+all of the codecs you want that default chromium can't) or
+Chrome (not chromium) + puppeteer-core.
+
+For simple needs you might like https://github.com/talmobi/eleko
+that gives a small puppeteer API to control an electron browser
+(which is a bit cumbersome to do out of the box compared to
+puppeteer).
+
 ## Easy to use
 
 #### Install
